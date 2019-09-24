@@ -1,12 +1,9 @@
 from graph import *
+import tkinter
 
 
 
 
-
-def cloud(x0, y0, clr1, clr2, clr3):
-
-    b = 8
 
 def rectangle_row(x0, y0, x1, y1, N, dx, clr1, clr2, clr3):
     brushColor(clr1, clr2, clr3)
@@ -38,6 +35,7 @@ def house():
     y1 = 300
     x2 = 300
     y2 = 650
+
     brushColor(200, 200, 200)
     rectangle(x1, y1, x2, y2)
     rectangle_row(x1 + 20, y2 - 175, x1 + 80, y2 - 50, 3, 25, 139, 69, 19)  # окна снизу
@@ -45,14 +43,31 @@ def house():
     rectangle_row(x1, y1 + 70, x1 + 10, y1 + 115, 9, 20, 0, 0, 0)  # перила
     rectangle(x1 - 10, y1 + 115, x2 - 10, y1 + 120)  # подоконник
     rectangle(x1 - 10, y1 + 60, x2 - 3, y1 + 80)  # штука на перилах
-    polygon([(x1-20, y1), (x1, y1-20),  (x2, y1-20), (x2+20, y1)])  # крыша
     penSize(4)
     line(x2 - 10, y1 + 120, 300, y1 + 110)  # бок пола подокнника
+
+def clouds():
+    c.create_oval(250, 200, 450, 220, outline="grey", fill="grey", width=5)
+    c.create_oval(300, 110, 500, 80, outline="black", fill="black", width=5)
+    c.create_oval(260, 200, 100, 300, outline="grey", fill="grey", width=5)
+    c.create_oval(300, 230, 500, 300, outline="grey", fill="grey", width=5)
+    c.create_oval(250, 140, 80, 80, outline="grey", fill="grey", width=5)
+
+def update():
+  moveObjectBy(obj, 5, 0)
+  if xCoord(obj) >= 500:
+    close()
+
+
 
 
 canvasSize(500, 800)
 penColor('black')
+c=canvas()
 backboard()
 house()
-
+clouds()
+brushColor(0, 0, 0)
+obj = polygon([(10, 300), (30, 280),  (300, 280), (320, 300)])
+onTimer(update, 50)
 run()
