@@ -4,7 +4,7 @@ import tkinter
 
 
 
-
+#окна
 def rectangle_row(x0, y0, x1, y1, N, dx, clr1, clr2, clr3):
     brushColor(clr1, clr2, clr3)
     Length = x1 - x0
@@ -12,7 +12,7 @@ def rectangle_row(x0, y0, x1, y1, N, dx, clr1, clr2, clr3):
         rectangle(x0, y0, x0 + Length, y1)
         x0 += Length + dx
 
-
+#фон
 def backboard():
     x1 = 0
     y1 = 250
@@ -29,7 +29,7 @@ def backboard():
     brushColor(100, 100, 100)
     rectangle(x3, y3, x4, y4)
 
-
+#дом
 def house():
     x1 = 30
     y1 = 300
@@ -47,7 +47,7 @@ def house():
     line(x2 - 10, y1 + 120, 300, y1 + 110)  # бок пола подокнника
 
 def clouds():
-    c.create_oval(250, 200, 450, 220, outline="grey", fill="grey", width=5)
+    c.create_oval(200, 180, 400, 100, outline="grey", fill="grey", width=5)
     c.create_oval(300, 110, 500, 80, outline="black", fill="black", width=5)
     c.create_oval(260, 200, 100, 300, outline="grey", fill="grey", width=5)
     c.create_oval(300, 230, 500, 300, outline="grey", fill="grey", width=5)
@@ -55,8 +55,10 @@ def clouds():
 
 def update():
   moveObjectBy(obj, 5, 0)
-  if xCoord(obj) >= 500:
-    close()
+  if xCoord(obj) >= 300:
+      moveObjectBy(obj, -5, 5)
+      if yCoord(obj) >= 600:
+          close()
 
 
 
